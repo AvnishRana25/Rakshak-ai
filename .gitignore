@@ -1,9 +1,12 @@
 # Environment Variables (CRITICAL - NEVER COMMIT!)
 .env
+.env.*
 .env.local
 .env.production
 .env.development
+.env.backup
 *.env
+!env.example
 
 # Python
 __pycache__/
@@ -67,7 +70,8 @@ coverage/
 .tox/
 test_results/
 
-# Documentation (keep only README.md)
+# Documentation (keep only README.md and SECURITY.md)
 *.md
 !README.md
+!SECURITY.md
 !frontend/README.md
