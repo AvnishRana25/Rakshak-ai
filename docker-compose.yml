@@ -1,0 +1,82 @@
+services:
+  web:
+    build: .
+    image: rakshak-ai-mongodb:latest
+    container_name: rakshak-ai
+    ports:
+      - "8000:8000"
+    # Add network capabilities for PCAP capture
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    # Run in privileged mode for packet capture (optional, more secure without)
+    # privileged: true
+    volumes:
+      - ./uploads:/app/uploads
+      - ./pcap_captures:/app/pcap_captures
+      # NO data volume - using MongoDB Atlas
+    environment:
+      # MongoDB Configuration
+      - MONGO_URI=${MONGO_URI}
+      
+      # Flask Configuration
+      - FLASK_ENV=production
+      - FLASK_DEBUG=0
+      - PORT=8000
+      
+      # Security
+      - SECRET_KEY=${SECRET_KEY}
+      
+      # Auto-blocking
+      - AUTO_BLOCK_THRESHOLD=${AUTO_BLOCK_THRESHOLD:-5}
+      - AUTO_BLOCK_WINDOW_HOURS=${AUTO_BLOCK_WINDOW_HOURS:-1}
+      
+      # Network Tools
+      - TSHARK_PATH=/usr/bin/tshark
+      
+      # SocketIO
+      - SOCKETIO_ASYNC_MODE=threading
+      
+      # CORS
+      - ALLOWED_CORS_ORIGINS=${ALLOWED_CORS_ORIGINS:-http://localhost:3000,http://localhost:8000}
+      
+      # Optional
+      - ABUSEIPDB_API_KEY=${ABUSEIPDB_API_KEY:-}
+      - MAX_FILE_SIZE_MB=100
+      - UPLOAD_FOLDER=uploads
+      
+      # Gemini API Configuration
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-1.5-pro}
+      
+      # PCAP Configuration
+      - PCAP_STORAGE_PATH=/app/pcap_captures
+      - MAX_CAPTURE_DURATION=${MAX_CAPTURE_DURATION:-3600}
+      - MAX_CONCURRENT_CAPTURES=${MAX_CONCURRENT_CAPTURES:-5}
+      - TCPDUMP_PATH=/usr/bin/tcpdump
+      - TSHARK_PATH=/usr/bin/tshark
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    networks:
+      - rakshak-network
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 512M
+
+networks:
+  rakshak-network:
+    driver: bridge

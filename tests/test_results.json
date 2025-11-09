@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-11-09T06:16:40.733574",
+  "base_url": "http://localhost:8000",
+  "execution_time": 53.250915,
+  "suites": {
+    "Service Page Functionality": {
+      "success": true,
+      "total": 14,
+      "passed": 14,
+      "failed": 0
+    },
+    "PCAP Capture Functionality": {
+      "success": true,
+      "total": 14,
+      "passed": 14,
+      "failed": 0
+    },
+    "Threat Intelligence Functionality": {
+      "success": true,
+      "total": 9,
+      "passed": 9,
+      "failed": 0
+    }
+  }
+}

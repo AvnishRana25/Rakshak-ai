@@ -1,0 +1,73 @@
+# Environment Variables (CRITICAL - NEVER COMMIT!)
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database (OLD SQLite - not needed with MongoDB)
+*.db
+*.sqlite
+data/
+
+# Application Data
+uploads/*
+!uploads/.gitkeep
+pcap_captures/*
+!pcap_captures/.gitkeep
+static/*
+!static/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Backups
+backups/
+*.old
+*.bak
+
+# Docker
+.dockerignore
+
+# Testing
+coverage/
+.pytest_cache/
+.tox/
+test_results/
+
+# Documentation (keep only README.md)
+*.md
+!README.md
+!frontend/README.md
