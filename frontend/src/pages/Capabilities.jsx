@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
-import { GeometricShapes, AnimatedGridLines, ConnectionLines, ParticleBackground } from '../components/GeometricBackground'
+import { GeometricShapes, ParticleBackground } from '../components/GeometricBackground'
 
 const Capabilities = () => {
   const mouseX = useMotionValue(0)
@@ -147,21 +147,10 @@ const Capabilities = () => {
           transition={{ delay: index * 0.1 + 0.3, duration: 0.8 }}
         />
         
-        {/* Animated icon */}
-        <motion.div
-          className="text-6xl mb-4 relative z-10"
-          animate={{ 
-            rotate: [0, 5, -5, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            delay: index * 0.2,
-          }}
-        >
+        {/* Icon */}
+        <div className="text-6xl mb-4 relative z-10">
           {cap.icon}
-        </motion.div>
+        </div>
         
         <h3 className="text-2xl font-semibold font-display text-white mb-4 relative z-10 hologram-text">
           {cap.title}
@@ -234,8 +223,6 @@ const Capabilities = () => {
           }}
         />
         <GeometricShapes />
-        <AnimatedGridLines />
-        <ConnectionLines />
         <ParticleBackground count={25} />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/95 to-dark" />
       </div>
@@ -313,20 +300,9 @@ const Capabilities = () => {
               whileHover={{ scale: 1.08, y: -8, rotateY: 5 }}
               style={{ transformStyle: "preserve-3d" }}
             >
-              <motion.div
-                className="text-6xl mb-4 relative z-10"
-                animate={{ 
-                  rotate: [0, 5, -5, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{ 
-                  duration: 6,
-                  repeat: Infinity,
-                  delay: index * 0.2,
-                }}
-              >
+              <div className="text-6xl mb-4 relative z-10">
                 {stat.icon}
-              </motion.div>
+              </div>
               <div className={`text-5xl font-bold font-display mb-3 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                 {stat.value}
               </div>

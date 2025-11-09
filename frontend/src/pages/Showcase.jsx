@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { GeometricShapes, AnimatedGridLines, ConnectionLines, ParticleBackground } from '../components/GeometricBackground'
+import { GeometricShapes, ParticleBackground } from '../components/GeometricBackground'
 
 const Showcase = () => {
   const mouseX = useMotionValue(0)
@@ -123,20 +123,9 @@ const Showcase = () => {
         />
         
         <div className="mb-6 flex items-center justify-between relative z-10">
-          <motion.div
-            className="text-5xl"
-            animate={{ 
-              rotate: [0, 10, -10, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              delay: index * 0.2,
-            }}
-          >
+          <div className="text-5xl">
             {feature.icon}
-          </motion.div>
+          </div>
           <motion.span
             className={`bg-gradient-to-r ${feature.color}/20 border border-neon-purple/30 text-neon-purple px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider`}
             whileHover={{ scale: 1.1, borderColor: 'rgba(131, 56, 236, 0.6)' }}
@@ -183,8 +172,6 @@ const Showcase = () => {
           }}
         />
         <GeometricShapes />
-        <AnimatedGridLines />
-        <ConnectionLines />
         <ParticleBackground count={25} />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/95 to-dark" />
       </div>
@@ -291,20 +278,9 @@ const Showcase = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${useCase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                <motion.div
-                  className="text-6xl mb-4 relative z-10"
-                  animate={{ 
-                    rotate: [0, 5, -5, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{ 
-                    duration: 6,
-                    repeat: Infinity,
-                    delay: index * 0.2,
-                  }}
-                >
+                <div className="text-6xl mb-4 relative z-10">
                   {useCase.icon}
-                </motion.div>
+                </div>
                 <h3 className="text-xl font-semibold font-display text-white mb-2 hologram-text">{useCase.title}</h3>
                 <p className="text-white/70">{useCase.desc}</p>
               </motion.div>

@@ -2,11 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-// ============================================
-// SHARED COMPONENTS
-// ============================================
-
-// Animated Counter Component
+// Hero Components
 const AnimatedCounter = ({ value, duration = 2000, suffix = '' }) => {
   const [count, setCount] = useState(0)
 
@@ -33,7 +29,6 @@ const AnimatedCounter = ({ value, duration = 2000, suffix = '' }) => {
   return <span>{count}{suffix}</span>
 }
 
-// Geometric Shapes Component
 const GeometricShapes = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -178,10 +173,7 @@ const FloatingLogo = ({ mouseX, mouseY }) => {
   )
 }
 
-// ============================================
-// HERO SECTION
-// ============================================
-
+// Hero Section
 const HeroSection = ({ mouseX, mouseY }) => {
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 400], [1, 0])
@@ -422,29 +414,23 @@ const HeroSection = ({ mouseX, mouseY }) => {
   )
 }
 
-// ============================================
-// SERVICES SECTION
-// ============================================
-
+// Services Section Component
 const ServicesSection = () => {
   const services = [
     {
       title: 'Real-time Threat Detection',
-      desc: 'Upload your access logs and detect sophisticated attacks with AI-powered analysis. Get instant alerts for SQL injection, XSS, and more.',
+      desc: 'Monitor your applications 24/7 with AI-powered threat intelligence',
       icon: '🔍',
-      link: '/service',
     },
     {
       title: 'PCAP Network Analysis',
-      desc: 'Capture and analyze network traffic in real-time. Identify malicious packets and suspicious activities with comprehensive insights.',
+      desc: 'Capture and analyze network traffic for comprehensive security insights',
       icon: '📡',
-      link: '/pcap-capture',
     },
     {
-      title: 'AI Threat Intelligence',
-      desc: 'Leverage Google Gemini AI for advanced IP reputation analysis and actionable security recommendations.',
-      icon: '🤖',
-      link: '/threat-intelligence',
+      title: 'Advanced Reporting',
+      desc: 'Generate detailed reports with actionable security recommendations',
+      icon: '📊',
     },
   ]
 
@@ -479,7 +465,7 @@ const ServicesSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -490,14 +476,6 @@ const ServicesSection = () => {
               transition={{ delay: index * 0.15, duration: 0.8 }}
               whileHover={{ scale: 1.05, y: -10 }}
             >
-              {/* Corner accents */}
-              <div className="absolute top-0 right-0 w-20 h-20">
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-[20px] border-t-transparent border-r-[20px] border-r-neon-purple/20 group-hover:border-r-neon-purple/40 transition-colors duration-300" />
-              </div>
-              <div className="absolute bottom-0 left-0 w-20 h-20">
-                <div className="absolute bottom-0 left-0 w-0 h-0 border-b-[20px] border-b-transparent border-l-[20px] border-l-neon-pink/20 group-hover:border-l-neon-pink/40 transition-colors duration-300" />
-              </div>
-              
               <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 via-transparent to-neon-pink/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <motion.div
@@ -518,17 +496,7 @@ const ServicesSection = () => {
               <h3 className="text-2xl font-semibold font-display text-white mb-4 relative z-10">
                 {service.title}
               </h3>
-              <p className="text-white/70 leading-relaxed relative z-10 mb-6">{service.desc}</p>
-              
-              <Link
-                to={service.link}
-                className="inline-flex items-center gap-2 text-neon-purple hover:text-neon-pink transition-colors relative z-10 font-semibold"
-              >
-                <span>Explore</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <p className="text-white/70 leading-relaxed relative z-10">{service.desc}</p>
               
               <motion.div
                 className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan"
@@ -540,52 +508,58 @@ const ServicesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <Link to="/service" className="btn-primary inline-flex items-center gap-2">
+            <span>Explore Full Service</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-// ============================================
-// CAPABILITIES SECTION
-// ============================================
-
+// Capabilities Section Component  
 const CapabilitiesSection = () => {
   const capabilities = [
     {
-      title: 'SQL Injection Detection',
-      desc: 'Protects your database from malicious queries with advanced pattern recognition and machine learning',
+      title: '💉 SQL Injection',
+      desc: 'Protects your database from malicious queries with advanced pattern recognition',
       icon: '🔒',
-      gradient: 'from-purple-500 to-pink-500'
     },
     {
-      title: 'XSS Protection',
-      desc: 'Identifies cross-site scripting attacks in real-time with zero false positives using AI analysis',
+      title: '⚡ XSS Protection',
+      desc: 'Identifies cross-site scripting attacks in real-time with zero false positives',
       icon: '🛡️',
-      gradient: 'from-pink-500 to-red-500'
     },
     {
-      title: 'Directory Traversal',
-      desc: 'Blocks unauthorized file access attempts with intelligent path analysis and validation',
+      title: '📂 Directory Traversal',
+      desc: 'Blocks unauthorized file access attempts with intelligent path analysis',
       icon: '🚫',
-      gradient: 'from-red-500 to-orange-500'
     },
     {
-      title: 'Command Injection',
-      desc: 'Detects system command execution attempts before they execute with proactive monitoring',
+      title: '💻 Command Injection',
+      desc: 'Detects system command execution attempts before they execute',
       icon: '⚡',
-      gradient: 'from-yellow-500 to-green-500'
     },
     {
-      title: 'SSRF Detection',
-      desc: 'Prevents server-side request forgery with comprehensive URL validation and filtering',
+      title: '🌐 SSRF Detection',
+      desc: 'Prevents server-side request forgery with comprehensive URL validation',
       icon: '🔍',
-      gradient: 'from-green-500 to-cyan-500'
     },
     {
-      title: 'Real-time Alerts',
-      desc: 'Instant notifications for detected threats with confidence scoring and detailed insights',
+      title: '📡 Real-time Alerts',
+      desc: 'Instant notifications for detected threats with confidence scoring',
       icon: '📊',
-      gradient: 'from-cyan-500 to-blue-500'
     },
   ]
 
@@ -612,7 +586,7 @@ const CapabilitiesSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -683,10 +657,7 @@ const CapabilitiesSection = () => {
   )
 }
 
-// ============================================
-// PCAP CAPTURE SECTION
-// ============================================
-
+// PCAP Capture Section
 const PcapCaptureSection = () => {
   return (
     <section id="pcap-capture" className="relative py-32 bg-dark/60 backdrop-blur-sm">
@@ -707,7 +678,7 @@ const PcapCaptureSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div
             className="card-matrix"
             initial={{ opacity: 0, x: -50 }}
@@ -715,16 +686,13 @@ const PcapCaptureSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-white mb-8 font-display flex items-center gap-3">
-              <span className="text-4xl">⚙️</span>
-              How It Works
-            </h3>
+            <h3 className="text-3xl font-bold text-white mb-6 font-display">How It Works</h3>
             <div className="space-y-6">
               {[
-                { step: '01', title: 'Capture', desc: 'Start capturing network packets on selected interfaces with one click', icon: '📸' },
-                { step: '02', title: 'Analyze', desc: 'Process packets with advanced threat detection algorithms in real-time', icon: '🔬' },
-                { step: '03', title: 'Alert', desc: 'Receive instant notifications for suspicious activities and anomalies', icon: '🚨' },
-                { step: '04', title: 'Report', desc: 'Generate comprehensive analysis reports with actionable insights', icon: '📄' },
+                { step: '01', title: 'Capture', desc: 'Start capturing network packets on selected interfaces' },
+                { step: '02', title: 'Analyze', desc: 'Process packets with advanced threat detection algorithms' },
+                { step: '03', title: 'Alert', desc: 'Receive instant notifications for suspicious activities' },
+                { step: '04', title: 'Report', desc: 'Generate comprehensive analysis reports' },
               ].map((item, index) => (
                 <motion.div
                   key={item.step}
@@ -738,10 +706,7 @@ const PcapCaptureSection = () => {
                     {item.step}
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-xl font-semibold text-white mb-2 font-display flex items-center gap-2">
-                      <span>{item.icon}</span>
-                      {item.title}
-                    </h4>
+                    <h4 className="text-xl font-semibold text-white mb-2 font-display">{item.title}</h4>
                     <p className="text-white/70">{item.desc}</p>
                   </div>
                 </motion.div>
@@ -756,35 +721,29 @@ const PcapCaptureSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-white mb-8 font-display flex items-center gap-3">
-              <span className="text-4xl">✨</span>
-              Key Features
-            </h3>
+            <h3 className="text-3xl font-bold text-white mb-6 font-display">Key Features</h3>
             <div className="space-y-4">
               {[
-                { text: 'Real-time packet capture and analysis', icon: '⚡' },
-                { text: 'Support for multiple network interfaces', icon: '🌐' },
-                { text: 'Advanced filtering and search capabilities', icon: '🔍' },
-                { text: 'Automated threat pattern recognition', icon: '🤖' },
-                { text: 'Export to multiple formats (PCAP, JSON, CSV)', icon: '💾' },
-                { text: 'Integration with threat intelligence feeds', icon: '🔗' },
+                'Real-time packet capture and analysis',
+                'Support for multiple network interfaces',
+                'Advanced filtering and search capabilities',
+                'Automated threat pattern recognition',
+                'Export to multiple formats (PCAP, JSON, CSV)',
+                'Integration with threat intelligence feeds',
               ].map((feature, index) => (
                 <motion.div
-                  key={feature.text}
-                  className="flex items-center gap-3 text-white/80 group hover:text-white transition-colors"
+                  key={feature}
+                  className="flex items-center gap-3 text-white/80 group"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <motion.div
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-neon-purple/20 to-neon-pink/20 group-hover:from-neon-purple/40 group-hover:to-neon-pink/40 transition-colors"
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span>{feature.icon}</span>
-                  </motion.div>
-                  <span className="flex-1">{feature.text}</span>
+                    className="w-2 h-2 rounded-full bg-gradient-to-r from-neon-purple to-neon-pink group-hover:scale-150 transition-transform"
+                    whileHover={{ scale: 2 }}
+                  />
+                  <span className="group-hover:text-white transition-colors">{feature}</span>
                 </motion.div>
               ))}
             </div>
@@ -809,10 +768,7 @@ const PcapCaptureSection = () => {
   )
 }
 
-// ============================================
-// THREAT INTELLIGENCE SECTION
-// ============================================
-
+// Threat Intelligence Section
 const ThreatIntelSection = () => {
   return (
     <section id="threat-intelligence" className="relative py-32 bg-dark">
@@ -833,31 +789,25 @@ const ThreatIntelSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {[
             {
               title: 'IP Reputation Analysis',
-              desc: 'Comprehensive reputation scoring for suspicious IP addresses with global threat intelligence',
+              desc: 'Comprehensive reputation scoring for suspicious IP addresses',
               icon: '🌐',
-              color: 'from-neon-purple to-neon-pink',
-              metric: '10M+',
-              metricLabel: 'IPs Analyzed'
+              color: 'from-neon-purple to-neon-pink'
             },
             {
               title: 'AI-Powered Insights',
-              desc: 'Leverage Google Gemini for intelligent threat assessment and pattern recognition',
+              desc: 'Leverage Google Gemini for intelligent threat assessment',
               icon: '🤖',
-              color: 'from-neon-pink to-neon-cyan',
-              metric: '99.9%',
-              metricLabel: 'Accuracy'
+              color: 'from-neon-pink to-neon-cyan'
             },
             {
               title: 'Actionable Recommendations',
-              desc: 'Get specific security recommendations based on threat analysis and industry best practices',
+              desc: 'Get specific security recommendations based on threat analysis',
               icon: '💡',
-              color: 'from-neon-cyan to-neon-purple',
-              metric: '24/7',
-              metricLabel: 'Monitoring'
+              color: 'from-neon-cyan to-neon-purple'
             },
           ].map((feature, index) => (
             <motion.div
@@ -889,17 +839,7 @@ const ThreatIntelSection = () => {
               <h3 className="text-2xl font-semibold font-display text-white mb-4">
                 {feature.title}
               </h3>
-              <p className="text-white/70 leading-relaxed mb-6">{feature.desc}</p>
-              
-              {/* Metric Badge */}
-              <div className="flex items-center justify-between mt-auto">
-                <div>
-                  <div className={`text-3xl font-bold font-display bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
-                    {feature.metric}
-                  </div>
-                  <div className="text-xs text-white/50 uppercase tracking-wider">{feature.metricLabel}</div>
-                </div>
-              </div>
+              <p className="text-white/70 leading-relaxed">{feature.desc}</p>
               
               <motion.div
                 className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${feature.color}`}
@@ -930,11 +870,8 @@ const ThreatIntelSection = () => {
   )
 }
 
-// ============================================
-// MAIN LANDING COMPONENT
-// ============================================
-
-const Landing = () => {
+// Main Landing Component
+const LandingNew = () => {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -959,4 +896,5 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default LandingNew
+

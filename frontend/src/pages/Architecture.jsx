@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue } from 'framer-motion'
-import { GeometricShapes, AnimatedGridLines, ConnectionLines, ParticleBackground } from '../components/GeometricBackground'
+import { GeometricShapes, ParticleBackground } from '../components/GeometricBackground'
 
 const Architecture = () => {
   const mouseX = useMotionValue(0)
@@ -123,20 +123,9 @@ const Architecture = () => {
           transition={{ delay: index * 0.1 + 0.3, duration: 0.8 }}
         />
         
-        <motion.div
-          className="text-6xl mb-6 relative z-10"
-          animate={{ 
-            rotate: [0, 10, -10, 0],
-            scale: [1, 1.15, 1]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            delay: index * 0.2,
-          }}
-        >
+        <div className="text-6xl mb-6 relative z-10">
           {comp.icon}
-        </motion.div>
+        </div>
         <h3 className="text-2xl font-semibold font-display text-white mb-4 relative z-10 hologram-text">{comp.title}</h3>
         <p className="text-white/70 leading-relaxed relative z-10">{comp.description}</p>
       </motion.div>
@@ -176,8 +165,6 @@ const Architecture = () => {
           }}
         />
         <GeometricShapes />
-        <AnimatedGridLines />
-        <ConnectionLines />
         <ParticleBackground count={25} />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/95 to-dark" />
       </div>
@@ -281,20 +268,9 @@ const Architecture = () => {
                     {item.step}
                   </motion.div>
                   
-                  <motion.div
-                    className="text-6xl mb-4 relative z-10"
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{ 
-                      duration: 6,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                    }}
-                  >
+                  <div className="text-6xl mb-4 relative z-10">
                     {item.icon}
-                  </motion.div>
+                  </div>
                   
                   <h3 className="text-xl font-semibold font-display text-white mb-2 relative z-10 hologram-text">{item.title}</h3>
                   <p className="text-sm text-white/70 relative z-10">{item.desc}</p>

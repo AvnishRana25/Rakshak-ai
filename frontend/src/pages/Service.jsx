@@ -21,6 +21,7 @@ import { useToast } from "../hooks/useToast";
 import Toast from "../components/Toast";
 import ConfirmDialog from "../components/ConfirmDialog";
 import { TableSkeleton, CardSkeleton } from "../components/LoadingSkeleton";
+import { GeometricShapes, ParticleBackground } from "../components/GeometricBackground";
 
 const Service = () => {
   const [file, setFile] = useState(null);
@@ -651,7 +652,41 @@ const Service = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gradient-to-b from-dark via-dark-lighter to-dark relative overflow-hidden">
-      <ParticleBackground />
+      {/* Enhanced Background Effects */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-1/4 w-[400px] h-[400px] rounded-full blur-3xl opacity-10"
+          style={{
+            background: 'radial-gradient(circle, rgba(131, 56, 236, 0.3) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [0, 20, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-40 left-1/4 w-[350px] h-[350px] rounded-full blur-3xl opacity-10"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 0, 110, 0.3) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <GeometricShapes />
+        <ParticleBackground count={20} />
+      </div>
+      
       <Toast toasts={toasts} removeToast={removeToast} />
       <ConfirmDialog
         isOpen={confirmDialog.isOpen}
