@@ -66,7 +66,7 @@ Community-Driven Threat Feeds: Signatures from the crowd, global blocklists, and
 
 🏆 Why Rakshak.ai Impresses
 
-Rakshak.ai is more than just another cyber-sec app—it is a production-grade, AI-upgraded doorman. What makes it hackathon-worthy, is that it has a great distance from the other projects by offering a fast, real-world, and high-impact problem solution with:
+Rakshak.ai is more than just another cyber-sec app—it is a production-grade, AI-upgraded doorman. What makes it industry-worthy, is that it has a great distance from the other projects by offering a fast, real-world, and high-impact problem solution with:
 
 Real-time, automated threat intelligence
 
